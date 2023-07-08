@@ -11,6 +11,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Prisma } from '@prisma/client';
 import { ConfigService } from '@nestjs/config';
 import { SignInDto } from './dto';
+import { Role } from './enums';
 
 @Injectable()
 export class AuthService {
@@ -29,6 +30,7 @@ export class AuthService {
       //create user with encrypted password
       const user = await this.prisma.user.create({
         data: {
+          roles: Role.USER,
           password: hash,
           ...userDetails,
         },
