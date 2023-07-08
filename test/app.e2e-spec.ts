@@ -62,9 +62,21 @@ describe('AppController (e2e)', () => {
           .spec()
           .post('/auth/signin')
           .withBody(dto)
-
+          .stores('user_At', 'access_token')
           .expectStatus(200)
           .expectBodyContains('access_token');
+      });
+    });
+  });
+
+  describe('Books', () => {
+    describe('Get books', () => {
+      it('should get all books', () => {
+        return pactum
+          .spec()
+          .get('/books')
+          .expectStatus(200)
+          .expectJsonLength(0);
       });
     });
   });
