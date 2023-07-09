@@ -22,6 +22,8 @@ model User{
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   comments Comment[]
+  books Book[]
+  ratings Rating[]
   @@map("users") 
 }
 
@@ -34,19 +36,26 @@ model Book {
   tagline String
   price String
   comments Comment[]
-  
+  ratings Rating[]
+
+  userId String
   createdAt DateTime @default(now())
+
+  editor User @relation(fields: [userId], references: [id])
   category Category @relation(fields: [categoryId], references: [id])
   @@map("books")
 }
 
 model Rating {
   id String @id @default(cuid())
-  userid String
+  userId String
   bookId String 
   rating Int 
 
   createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  book Book @relation(fields: [bookId], references: [id])
   @@map("ratings")
 }
 
@@ -70,4 +79,3 @@ model Comment {
   book Book @relation(fields: [bookId], references: [id])
   @@map("comments")
 }
-

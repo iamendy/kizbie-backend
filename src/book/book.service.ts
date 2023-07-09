@@ -14,7 +14,7 @@ export class BookService {
           ...createBookDto,
         },
       });
-      return { book };
+      return book;
     } catch (e) {
       throw new ForbiddenException('An error occured');
     }
