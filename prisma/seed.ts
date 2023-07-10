@@ -1,4 +1,4 @@
-import { Category, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 import * as argon from 'argon2';
 import { Role } from '../src/auth/enums';
@@ -66,8 +66,6 @@ const main = async () => {
 
   // get all books
   const dbBooks = await prisma.book.findMany();
-
-  console.log(dbBooks);
 
   //create 3 users
   for (let i: number = 0; i < 3; i++) {

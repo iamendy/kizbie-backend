@@ -7,10 +7,12 @@ import { PrismaService } from '../prisma/prisma.service';
 export class BookService {
   constructor(private prisma: PrismaService) {}
 
-  async create(createBookDto: CreateBookDto) {
+  //create a new book lisiting
+  async create(createBookDto: CreateBookDto, userId: string) {
     try {
       const book = await this.prisma.book.create({
         data: {
+          userId,
           ...createBookDto,
         },
       });

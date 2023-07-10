@@ -41,8 +41,8 @@ export class BookController {
   })
   @HttpCode(HttpStatus.CREATED)
   @Post()
-  create(@Body() createBookDto: CreateBookDto, @GetUser('id') user: User) {
-    return this.bookService.create(createBookDto);
+  create(@Body() createBookDto: CreateBookDto, @GetUser('id') userId: string) {
+    return this.bookService.create(createBookDto, userId);
   }
 
   @UseGuards(JwtGuard, ACGuard)
